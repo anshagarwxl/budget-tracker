@@ -1,67 +1,87 @@
+# 💰 Budget Tracker (Python)
 
-import json
+A simple command-line Budget Tracker built in **Python**, designed to help you log expenses, track your spending, and view your remaining budget in real-time. This project uses basic Python data structures and JSON for persistence (optional), making it beginner-friendly and highly extendable.
 
-def add_expense(expenses, description, amount):
-    expenses.append({"description": description, "amount": amount})
-    print(f"Added expense: {description}, Amount: {amount}")
+---
 
-def get_total_expenses(expenses):
-    return sum(expense['amount'] for expense in expenses)
+## 🚀 About the Project
 
-def get_balance(budget, expenses):
-    return budget - get_total_expenses(expenses)
+This CLI-based budget tracker allows users to:
 
-def show_budget_details(budget, expenses):
-    print(f"Total Budget: {budget}")
-    print("Expenses:")
-    for expense in expenses:
-        print(f"- {expense['description']}: {expense['amount']}")
-    print(f"Total Spent: {get_total_expenses(expenses)}")
-    print(f"Remaining Budget: {get_balance(budget, expenses)}")
+- Set an initial budget
+- Add multiple expenses with descriptions
+- See a breakdown of all expenses
+- Track total spending and remaining balance
 
-def load_budget_data(filepath):
-    try:
-        with open(filepath, 'r') as file:
-            data = json.load(file)
-            return data['initial_budget'], data['expenses']
-    except (FileNotFoundError, json.JSONDecodeError):
-        return 0, []  # Return default values if the file doesn't exist or is empty/corrupted
-#
-def save_budget_data(filepath, initial_budget, expenses):
-    data = {
-        'initial_budget': initial_budget,
-        'expenses': expenses
-    }
-    with open(filepath, 'w') as file:
-        json.dump(data, file, indent=4)
+It's a lightweight project focused on **practical learning**, with clean code, modular functions, and easy-to-understand logic.
 
+---
 
-def main():
-    print("Welcome to the Budget App")
-    initial_budget = float(input("Please enter your initial budget: "))
-    # filepath = 'budget_data.json'  # Define the path to your JSON file
-    # initial_budget, expenses = load_budget_data(filepath)
-    budget = initial_budget
-    expenses = []
+## 🧰 Tech Stack
 
-    while True:
-        print("\nWhat would you like to do?")
-        print("1. Add an expense")
-        print("2. Show budget details")
-        print("3. Exit")
-        choice = input("Enter your choice (1/2/3): ")
+- **Python 3.x**
+- **JSON** for (optional) data persistence
 
-        if choice == "1":
-            description = input("Enter expense description: ")
-            amount = float(input("Enter expense amount: "))
-            add_expense(expenses, description, amount)
-        elif choice == "2":
-            show_budget_details(budget, expenses)
-        elif choice == "3":
-            print("Exiting Budget App. Goodbye!")
-            break
-        else:
-            print("Invalid choice, please choose again.")
+---
 
-if __name__ == "__main__":
-    main()
+## ✅ Features
+
+- Add expenses with description and amount
+- View:
+  - Total budget
+  - List of all expenses
+  - Total spent
+  - Remaining balance
+- Input handling with a simple menu loop
+- JSON-based load/save logic included (commented for optional use)
+
+---
+
+## 📝 Code Structure
+
+- `add_expense()` – Adds an expense entry  
+- `get_total_expenses()` – Calculates total amount spent  
+- `get_balance()` – Computes remaining budget  
+- `show_budget_details()` – Prints budget summary  
+- `load_budget_data()` – (Optional) Loads data from a JSON file  
+- `save_budget_data()` – (Optional) Saves data to a JSON file  
+- `main()` – Runs the program interactively via terminal
+
+---
+
+## 📦 How to Run
+
+### 🔧 Requirements
+
+- Python 3.x installed
+
+### ▶️ Steps
+
+1. Clone the repository or copy the script into a `.py` file
+2. Open your terminal and navigate to the file directory
+3. Run the program:
+
+```bash
+python budget_tracker.py
+```
+
+4. Follow the on-screen instructions to add expenses and view your budget
+
+---
+
+## 💡 Future Improvements
+
+- Enable saving and loading data using JSON (already included, just uncomment)
+- Add category-based expense tracking (e.g. Food, Travel, Shopping)
+- Add monthly reports or bar chart summaries
+- Build a GUI using Tkinter or a web version using Flask
+
+---
+
+## 📄 License
+
+This is a personal project built for hands-on practice. Feel free to use or modify it for learning purposes.
+
+---
+
+Let me know if you'd like to upload this to GitHub with a preview GIF or CLI screenshot!
